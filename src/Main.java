@@ -1,52 +1,7 @@
-import board.Board;
-import controller.Evaluator;
-
-import java.util.Scanner;
-
-import static board.BoardUtils.printAvailablePositions;
-import static board.BoardUtils.printBoard;
-import static board.BoardUtils.printBoardHint;
 
 public class Main {
-
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        boolean player1 = true;
-        Board b = new Board();
-        Evaluator e = new Evaluator(b);
-
-        boolean isOver = e.getIsGameOver();
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-        printBoardHint(b);
-        while (isOver == false) {
-            printBoard(b);
-            printAvailablePositions(b);
-            String currentPlayer = player1 ? "1" : "2";
-            String currentSymbol = player1 ? "X" : "O";
-
-            System.out.println("Player " + currentPlayer + ": Please make a selection");
-            // player makes a position
-
-
-            System.out.println("Enter a number: ");
-            int n = reader.nextInt(); // Scans the next token of the input as an int.
-            System.out.println("You have chosen " + n);
-            e.setPositionBoard(currentSymbol, n);
-
-
-            isOver = e.evaluateBoard();
-            printBoard(b);
-            player1 = !player1;
-            System.out.println("TURN OVER===========================");
-        }
-        reader.close();
-        if (e.didPlayer1Win()){
-            System.out.println("Good Game Player 1");
-        }else if (e.didPlayer2Win()){
-            System.out.println("Good Game Player 2");
-        }else{
-            System.out.println("Good Game TIED");
-        }
+       Engine e = new Engine();
+       e.startGame();
     }
-
 }
