@@ -80,23 +80,9 @@ public class Evaluator {
         return true;
     }
 
-
-    public void setPositionBoard(String val, int position) {
-        int dim = boardModel.getDim();
-        String[] board = boardModel.getBoard();
-        if (position < 0 || position >= dim * dim){
-            System.out.printf("INVALID position, forfeit turn");
-            return;
-        }
-
-        if (board[position].isEmpty() == false){
-            System.out.printf("PRE OCCUPIED position, forfeit turn");
-            return;
-        }
-
-        board[position] = val;
+    public void setPositionBoard(int position, String val) {
+        boardModel.setPositionValue(position, val);
     }
-
 
     public boolean getIsGameOver() {
         return isGameOver;

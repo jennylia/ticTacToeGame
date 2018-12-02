@@ -24,4 +24,18 @@ public class Board {
         return board;
     }
 
+    public void setPositionValue(int position, String val){
+        if (position < 0 || position >= dim * dim){
+            System.out.printf("INVALID position, forfeit turn");
+            return;
+        }
+
+        if (board[position].isEmpty() == false){
+            System.out.printf("PRE OCCUPIED position, forfeit turn");
+            return;
+        }
+
+        board[position] = val;
+    }
+
 }

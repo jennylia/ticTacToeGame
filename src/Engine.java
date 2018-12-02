@@ -4,7 +4,6 @@ import controller.Evaluator;
 import java.util.Scanner;
 
 import static board.BoardUtils.printAvailablePositions;
-import static board.BoardUtils.printBoard;
 import static board.BoardUtils.printBoardHint;
 
 public class Engine {
@@ -28,7 +27,7 @@ public class Engine {
             System.out.println("Enter a number: ");
             int n = reader.nextInt(); // Scans the next token of the input as an int.
             System.out.println("You have chosen " + n);
-            e.setPositionBoard(currentSymbol, n);
+            e.setPositionBoard(n, currentSymbol);
 
 
             isOver = e.evaluateBoard();
@@ -42,9 +41,15 @@ public class Engine {
 
     private void evaluateWinner() {
         if (e.didPlayer1Win()){
+            System.out.println("**********CONGRADS***********");
             System.out.println("Good Game Player 1");
+            System.out.println("*****************************");
+
         }else if (e.didPlayer2Win()){
+            System.out.println("**********CONGRADS***********");
             System.out.println("Good Game Player 2");
+            System.out.println("*****************************");
+
         }else{
             System.out.println("Good Game TIED");
         }
