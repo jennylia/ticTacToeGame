@@ -2,6 +2,10 @@ import board.Board;
 
 import java.util.Scanner;
 
+import static board.BoardUtils.printAvailablePositions;
+import static board.BoardUtils.printBoard;
+import static board.BoardUtils.printBoardHint;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,9 +14,10 @@ public class Main {
         Board b = new Board();
         boolean isOver = b.getIsGameOver();
         Scanner reader = new Scanner(System.in);  // Reading from System.in
-
+        printBoardHint(b);
         while (isOver == false) {
-            b.printBoard();
+            printBoard(b);
+            printAvailablePositions(b);
             String currentPlayer = player1 ? "1" : "2";
             String currentSymbol = player1 ? "X" : "O";
 
@@ -27,7 +32,7 @@ public class Main {
 
 
             isOver = b.evaluateBoard();
-            b.printBoard();
+            printBoard(b);
             player1 = !player1;
             System.out.println("TURN OVER===========================");
         }

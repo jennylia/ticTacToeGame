@@ -1,22 +1,14 @@
 package board;
 
 public class Board {
-    private String[] board;
-    private int dim = 3;
+
+    private final String[] board;
+    private final int dim = 3;
+
     private boolean isGameOver;
+
     private boolean player1Win; // Could be tied
     private boolean player2Win;
-
-    public String getWinner(){
-        if (player1Win){
-            return "Player1 Win";
-        }else if (player2Win){
-            return "Player2 Win";
-        }else{
-            return "No winner";
-        }
-
-    }
 
     public Board() {
         // Init function
@@ -30,6 +22,25 @@ public class Board {
         isGameOver = false;
         player1Win = false;
         player2Win = false;
+
+    }
+
+    public int getDim() {
+        return dim;
+    }
+
+    public String[] getBoard() {
+        return board;
+    }
+
+    public String getWinner(){
+        if (player1Win){
+            return "Player1 Win";
+        }else if (player2Win){
+            return "Player2 Win";
+        }else{
+            return "No winner";
+        }
 
     }
 
@@ -108,23 +119,7 @@ public class Board {
             return;
         }
 
-
         board[position] = val;
-    }
-
-
-    public void printBoard() {
-        System.out.println("printing the board...");
-        int row = 0;
-        while (row < dim) {
-            for (int i = 0; i < dim; i++) {
-                int pos = row * dim + i;
-                System.out.print(board[pos] + "|");
-            }
-            row++;
-            System.out.println();
-
-        }
     }
 
 
