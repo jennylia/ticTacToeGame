@@ -1,4 +1,5 @@
 import board.Board;
+import controller.Evaluator;
 
 import java.util.Scanner;
 
@@ -12,7 +13,9 @@ public class Main {
         System.out.println("Hello World!");
         boolean player1 = true;
         Board b = new Board();
-        boolean isOver = b.getIsGameOver();
+        Evaluator e = new Evaluator(b);
+
+        boolean isOver = e.getIsGameOver();
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         printBoardHint(b);
         while (isOver == false) {
@@ -28,18 +31,22 @@ public class Main {
             System.out.println("Enter a number: ");
             int n = reader.nextInt(); // Scans the next token of the input as an int.
             System.out.println("You have chosen " + n);
-            b.setPositionBoard(currentSymbol, n);
+            e.setPositionBoard(currentSymbol, n);
 
 
-            isOver = b.evaluateBoard();
+            isOver = e.evaluateBoard();
             printBoard(b);
             player1 = !player1;
             System.out.println("TURN OVER===========================");
         }
         reader.close();
-        System.out.println("Good Game " + b.getWinner());
-
-
-
+        if (e.didPlayer1Win()){
+            System.out.println("Good Game Player 1");
+        }else if (e.didPlayer2Win()){
+            System.out.println("Good Game Player 2");
+        }else{
+            System.out.println("Good Game TIED");
+        }
     }
+
 }
